@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты подбора</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4 mb-4">Результаты подбора</h1>
+
+    {% if cpu %}
+    <p><strong>Процессор:</strong> {{ cpu.name }}</p>
+    {% endif %}
+    {% if motherboard %}
+    <p><strong>Материнская плата:</strong> {{ motherboard.name }}</p>
+    {% endif %}
+    {% if ram %}
+    <p><strong>Оперативная память:</strong> {{ ram.name }}</p>
+    {% endif %}
+    {% if gpu %}
+    <p><strong>Видеокарта:</strong> {{ gpu.name }}</p>
+    {% endif %}
+    {% if power_supply %}
+    <p><strong>Блок питания:</strong> {{ power_supply.name }}</p>
+    {% endif %}
+
+    {% if errors %}
+    <div class="alert alert-danger mt-3">
+        <h4 class="alert-heading">Комплектующие несовместимы!</h4>
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="alert alert-success mt-3">
+        <h4 class="alert-heading">Комплектующие совместимы!</h4>
+        <p>Все выбранные комплектующие совместимы друг с другом.</p>
+    </div>
+    {% endif %}
+
+    <a href="/" class="btn btn-secondary">Изменить выбор</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

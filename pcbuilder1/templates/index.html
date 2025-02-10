@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбор комплектующих</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4 mb-4">Подбор комплектующих</h1>
+    <p>Выберите комплектующие для вашего компьютера:</p>
+
+    <form action="/check_compatibility" method="post">
+        <div class="form-group">
+            <label for="cpu">Процессор:</label>
+            <select class="form-control" id="cpu" name="cpu">
+                <option value="">Выберите процессор</option>
+                {% for cpu in cpus %}
+                <option value="{{ cpu.id }}">{{ cpu.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="motherboard">Материнская плата:</label>
+            <select class="form-control" id="motherboard" name="motherboard">
+                <option value="">Выберите материнскую плату</option>
+                {% for motherboard in motherboards %}
+                <option value="{{ motherboard.id }}">{{ motherboard.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ram">Оперативная память:</label>
+            <select class="form-control" id="ram" name="ram">
+                <option value="">Выберите оперативную память</option>
+                {% for ram in ram %}
+                <option value="{{ ram.id }}">{{ ram.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gpu">Видеокарта:</label>
+            <select class="form-control" id="gpu" name="gpu">
+                <option value="">Выберите видеокарту</option>
+                {% for gpu in gpus %}
+                <option value="{{ gpu.id }}">{{ gpu.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="power_supply">Блок питания:</label>
+            <select class="form-control" id="power_supply" name="power_supply">
+                <option value="">Выберите блок питания</option>
+                {% for power_supply in power_supplies %}
+                <option value="{{ power_supply.id }}">{{ power_supply.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Проверить совместимость</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
